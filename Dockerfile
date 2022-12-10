@@ -5,13 +5,13 @@ RUN apt-get update && \
     curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
     apt-get install -y nodejs && \
     rm -rf /var/cache/apk/* && \
-    pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple --no-cache-dir poetry && \
+    pip3 install --no-cache-dir poetry && \
     rm -rf ~/.cache/
 COPY package*.json ./
 COPY pyproject.toml ./
 COPY poetry.lock ./
 # Install dependencies
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-RUN poetry install && npm install && rm -rf ~/.npm/
+RUN mkdir ~/.pip && echo '[global]\n index-url = http://mirrors.aliyun.com/pypi/simple/\n[install]\n trusted-host = mirrors.aliyun.com' >> ~/.pip/pip.conf && poetry install && npm install && rm -rf ~/.npm/
 COPY . .
 CMD ["npm", "run", "dev"]
