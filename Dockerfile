@@ -5,7 +5,7 @@ RUN apt-get update && \
     curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
     apt-get install -y nodejs && \
     rm -rf /var/cache/apk/* && \
-    pip3 install --no-cache-dir poetry && \
+    pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple --no-cache-dir poetry && \
     rm -rf ~/.cache/
 COPY package*.json ./
 COPY pyproject.toml ./
