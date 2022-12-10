@@ -253,7 +253,7 @@ export class ChatGPTBot {
     this.botName = botName;
   }
   get chatGroupTiggerKeyword(): string {
-    return `@${this.botName}`;
+    return `@${this.botName}` + this.chatPrivateTiggerKeyword;
   }
   async startGPTBot() {
     console.debug(`Start GPT Bot Config is:${JSON.stringify(config)}`);
@@ -318,7 +318,7 @@ export class ChatGPTBot {
     text: string
   ): boolean {
     return (
-      talker.self() ||
+      // talker.self() ||
       messageType > MessageType.GroupNote ||
       talker.name() == "微信团队" ||
       // 语音(视频)消息
