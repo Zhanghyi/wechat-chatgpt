@@ -12,7 +12,7 @@ COPY pyproject.toml ./
 COPY poetry.lock ./
 # Install dependencies
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-RUN mkdir ~/.pip && echo '[global]\n index-url = http://mirrors.aliyun.com/pypi/simple/\n[install]\n trusted-host = mirrors.aliyun.com' >> ~/.pip/pip.conf && \
+RUN mkdir ~/.pip && echo '[global]\n index-url = https://pypi.tuna.tsinghua.edu.cn/simple\n[install]\n trusted-host = pypi.tuna.tsinghua.edu.cn' >> ~/.pip/pip.conf && \
     poetry install && npm config set registry https://registry.npm.taobao.org/ && npm install && rm -rf ~/.npm/
 COPY . .
 CMD ["npm", "run", "dev"]

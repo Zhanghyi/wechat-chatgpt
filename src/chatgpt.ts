@@ -253,7 +253,7 @@ export class ChatGPTBot {
     this.botName = botName;
   }
   get chatGroupTiggerKeyword(): string {
-    return `@${this.botName}` + this.chatPrivateTiggerKeyword;
+    return `@${this.botName}` + ` ` + this.chatPrivateTiggerKeyword;
   }
   async startGPTBot() {
     console.debug(`Start GPT Bot Config is:${JSON.stringify(config)}`);
@@ -357,6 +357,7 @@ export class ChatGPTBot {
     }
     if (this.tiggerGPTMessage(rawText, privateChat)) {
       const text = this.cleanMessage(rawText, privateChat);
+      console.log
       if (privateChat) {
         return await this.onPrivateMessage(talker, text);
       } else {
